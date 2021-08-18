@@ -13,3 +13,7 @@ body {
   background-color: #3f3f3f;
 }
 
+.no-results {
+  color: white;
+  padding: 0 1rem;
+}

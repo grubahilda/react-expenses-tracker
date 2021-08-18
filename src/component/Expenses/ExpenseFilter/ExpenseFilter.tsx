@@ -3,14 +3,14 @@ import './ExpenseFilter.css';
 
 const ExpensesFilter = (props: any) => {
   const onYearChangeHandler = (event: any) => {
-      props.onFilterChange(event.target.value)
+      props.onFilterChange(+event.target.value)
   };
 
   return (
     <div className='expenses-filter'>
       <div className='expenses-filter__control'>
         <label>{TextResources.filterLabel}</label>
-        <select onChange={onYearChangeHandler}>
+        <select value={props.selected} onChange={onYearChangeHandler}>
           <option value='2022'>2022</option>
           <option value='2021'>2021</option>
           <option value='2020'>2020</option>

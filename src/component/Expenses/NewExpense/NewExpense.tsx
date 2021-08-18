@@ -5,6 +5,7 @@ function NewExpense(props: any) {
   const saveExpenseDataHandler = (enteredExpenseData: any) => {
     const expenseData = { ...enteredExpenseData, id: props.nrExpenses + 1 };
     props.onAddNewExpense(expenseData);
+    // console.log(expenseData);
   };
 
   return (

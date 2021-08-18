@@ -1,31 +1,47 @@
+import { ReactElement, useState } from 'react';
+import { DateService } from '../../helpers/date-helper';
+import { TextResources } from '../../TextResources';
 import ExpensesFilter from './ExpenseFilter/ExpenseFilter';
 import ExpenseItem from './ExpenseItem/ExpenseItem';
 import { ExpenseItemModel } from './ExpenseItem/ExpenseItemModel';
 import './Expenses.css';
 
 function Expenses(props: any) {
-  const onFilterChangeHandler = (filterYearValue: string) => {
-    // TODO
+  const [filteredYear, setFilteredYear] = useState(
+    DateService.todayAsDate().getFullYear()
+  );
+
+  const filterChangeHandler = (filterYearValue: number) => {
+    setFilteredYear(filterYearValue);
   };
 
-  const items: any[] = [];
+  const filteredItems: ExpenseItemModel[] = props.items.filter(
+    (e: ExpenseItemModel) =>
+      DateService.convertStringToDateObject(e.date).getFullYear() ===
+      filteredYear
+  );
 
-  props.items.map((e: ExpenseItemModel, i: number) => {
-    return items.push(
-      <ExpenseItem
+  const displayItems = filteredItems.length === 0 ? (
+    <p className='no-results'>{TextResources.noExpenses}</p>
+  ) : 
+    filteredItems.map((e: ExpenseItemModel) => {
+      return <ExpenseItem
         id={e.id}
         title={e.title}
         date={e.date}
         amount={e.amount}
-        key={i}
-      />
-    );
-  });
+        key={e.id}
+      />;
+    }
+  )
 
   return (
     <div className='expenses'>
-      <ExpensesFilter onFilterChange={onFilterChangeHandler} />
-      {items}
+      <ExpensesFilter
+        selected={filteredYear}
+        onFilterChange={filterChangeHandler}
+      />
+      {displayItems}
     </div>
   );
 }

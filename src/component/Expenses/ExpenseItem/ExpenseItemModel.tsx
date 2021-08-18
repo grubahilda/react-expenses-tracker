@@ -1,6 +1,6 @@
 export type ExpenseItemModel = {
-    id: string;
-    title: string;
-    date: string;
-    amount: number;
-}
+  id: number;
+  title: string;
+  date: string;
+  amount: number;
+};
