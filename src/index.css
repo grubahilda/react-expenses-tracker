@@ -16,4 +16,5 @@ body {
 .no-results {
   color: white;
   padding: 0 1rem;
+  text-align: center;
 }
