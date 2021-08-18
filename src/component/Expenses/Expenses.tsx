@@ -1,30 +1,33 @@
+import ExpensesFilter from './ExpenseFilter/ExpenseFilter';
 import ExpenseItem from './ExpenseItem/ExpenseItem';
 import { ExpenseItemModel } from './ExpenseItem/ExpenseItemModel';
 import './Expenses.css';
 
-function Expenses() {
-  const expenses = [
-    {
-      title: 'Car insurance',
-      amount: 1200,
-      date: '11-12-2021',
-    },
-    {
-      title: 'Car insurance',
-      amount: 1200,
-      date: '1-02-2019',
-    },
-  ] as ExpenseItemModel[];
+function Expenses(props: any) {
+  const onFilterChangeHandler = (filterYearValue: string) => {
+    // TODO
+  };
 
   const items: any[] = [];
 
-  for (const e of expenses) {
-    items.push(
-      <ExpenseItem title={e.title} date={e.date} amount={e.amount} />
+  props.items.map((e: ExpenseItemModel, i: number) => {
+    return items.push(
+      <ExpenseItem
+        id={e.id}
+        title={e.title}
+        date={e.date}
+        amount={e.amount}
+        key={i}
+      />
     );
-  }
+  });
 
-  return <div className='expenses'>{items}</div>;
+  return (
+    <div className='expenses'>
+      <ExpensesFilter onFilterChange={onFilterChangeHandler} />
+      {items}
+    </div>
+  );
 }
 
 export default Expenses;

@@ -18,15 +18,11 @@ export class DateService {
 
     static convertStringToDateObject(date: string): Date {
         const dateString = date.split(separator);
-        console.log(date);
         
         let dateObject = {} as Date;
 
         if (dateString && dateString.length === 3) {
-            dateObject = new Date(+dateString[2], +dateString[1] - 1, +dateString[0]);
-            console.log(dateObject);
-            console.log(dateString);
-            
+            dateObject = new Date(+dateString[2], +dateString[1] - 1, +dateString[0]);            
         }
         
         return dateObject;
