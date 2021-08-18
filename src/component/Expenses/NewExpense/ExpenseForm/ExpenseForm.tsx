@@ -52,6 +52,10 @@ function ExpenseForm(props: any) {
     });
   };
 
+  const cancelHandler = () => {
+    props.onCancelButton();
+  };
+
   return (
     <form onSubmit={submitHandler}>
       <div className='new-expense__controls'>
@@ -84,6 +88,7 @@ function ExpenseForm(props: any) {
         </div>
       </div>
       <div className='new-expense__actions'>
+        <button onClick={cancelHandler} type='button'>{TextResources.cancelButton}</button>
         <button type='submit'>{TextResources.addExpenseButton}</button>
       </div>
     </form>
