@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { DateService } from '../../helpers/date-helper';
 import { TextResources } from '../../TextResources';
+import ExpenseChart from './ExpenseChart/ExpenseChart';
 import ExpensesFilter from './ExpenseFilter/ExpenseFilter';
 import ExpenseItem from './ExpenseItem/ExpenseItem';
 import { ExpenseItemModel } from './ExpenseItem/ExpenseItemModel';
@@ -23,7 +24,8 @@ function Expenses(props: any) {
           return props.items;
         }
     }
-  );
+    
+    );
 
   const displayItems =
     filteredItems.length === 0 ? (
@@ -48,6 +50,7 @@ function Expenses(props: any) {
         selected={filteredYear}
         onFilterChange={filterChangeHandler}
       />
+      <ExpenseChart expenses={filteredItems} />
       {displayItems}
     </div>
   );
