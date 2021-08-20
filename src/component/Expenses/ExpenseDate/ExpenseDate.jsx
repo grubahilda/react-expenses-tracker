@@ -1,7 +1,7 @@
 import './ExpenseDate.css'
 import { DateService } from '../../../helpers/date-helper';
 
-function ExpenseDate(props) {
+const ExpenseDate = (props) => {
   const date = DateService.convertStringToDateObject(props.date);
 
   return (
