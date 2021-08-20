@@ -1,7 +1,7 @@
 import { DateService } from '../../../helpers/date-helper';
 import Chart from '../../Chart/Chart';
 import { DataPointsModel } from '../../Chart/ChartBar/DataPointsModel';
-import { ExpenseItemModel } from '../ExpenseItem/ExpenseItemModel';
+import { ExpenseItemModel } from '../../../models/ExpenseItemModel';
 
 const ExpenseChart = (props: any) => {
   const chartDataPoints: DataPointsModel[] = [
