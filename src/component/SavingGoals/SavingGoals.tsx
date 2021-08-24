@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Modal } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import { PriorityEnum } from '../../models/enums';
 import { SavingGoalModel } from '../../models/SavingGoalModel';
 import { TextResources } from '../Expenses';
@@ -8,7 +8,7 @@ import SavingGoal from './SavingGoal/SavingGoal';
 import './SavingGoals.css';
 
 const SavingGoals = (props: any) => {
-  const goals: SavingGoalModel[] = [
+  const DUMMY_GOALS: SavingGoalModel[] = [
     {
       id: 1,
       name: 'Cycling pants',
@@ -29,9 +29,20 @@ const SavingGoals = (props: any) => {
     },
   ];
 
+  const [goals, setGoals] = useState(DUMMY_GOALS);
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const addNewSavingGoal = (newGoal: any) => {
+    setGoals(prevState => {
+      return [ ...prevState, {...newGoal, id: goals.length + 1}]
+    })
+    handleClose();
+    
+  };
+
 
   return (
     <div className='saving-goals'>
@@ -53,19 +64,11 @@ const SavingGoals = (props: any) => {
       </div>
       <Modal show={show} centered onHide={handleClose}>
           <Modal.Header>
-            <Modal.Title>Modal heading</Modal.Title>
+            <Modal.Title>{TextResources.addSavingGoalHeader}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <AddSavingGoalForm />
+            <AddSavingGoalForm onHandleClose={handleClose} addNewSavingGoal={addNewSavingGoal} />
           </Modal.Body>
-          <Modal.Footer>
-            <Button variant='secondary' onClick={handleClose}>
-              Close
-            </Button>
-            <Button variant='primary' onClick={handleClose}>
-              Save Changes
-            </Button>
-          </Modal.Footer>
         </Modal>
     </div>
   );

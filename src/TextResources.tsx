@@ -14,7 +14,9 @@ export const TextResources = {
   // SavingGoals
   savingGoalsTitle: 'Saving Goals',
   addSavingGoalButton: '+ Add',
+  addSavingGoalHeader: 'Add a new saving goal',
   savingGoalName: 'Name',
   savingGoalAmount: 'Amount needed',
   savingGoalPriority: 'Priority',
+  defaultPriority: 'Choose priority',
 };
