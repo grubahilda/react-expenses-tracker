@@ -1,6 +1,6 @@
 import ExpenseDate from '../ExpenseDate/ExpenseDate';
 import './ExpenseItem.css';
-import { ExpenseItemModel } from './ExpenseItemModel';
+import { ExpenseItemModel } from '../../../models/ExpenseItemModel';
 
 function ExpenseItem(props: ExpenseItemModel) {
 

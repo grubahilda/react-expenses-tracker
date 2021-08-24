@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { ExpenseItemModel } from './component/Expenses/ExpenseItem/ExpenseItemModel';
+import { ExpenseItemModel } from './models/ExpenseItemModel';
 import Expenses from './component/Expenses/Expenses';
 import NewExpense from './component/Expenses/NewExpense/NewExpense';
+import SavingGoals from './component/SavingGoals/SavingGoals';
 
 const DUMMY_EXPENSES = [
   {
@@ -33,6 +34,7 @@ function App() {
         nrExpenses={expenses.length}
       />
       <Expenses items={expenses} />
+      <SavingGoals />
     </div>
   );
 }

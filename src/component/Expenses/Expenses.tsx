@@ -4,7 +4,7 @@ import { TextResources } from '../../TextResources';
 import ExpenseChart from './ExpenseChart/ExpenseChart';
 import ExpensesFilter from './ExpenseFilter/ExpenseFilter';
 import ExpenseItem from './ExpenseItem/ExpenseItem';
-import { ExpenseItemModel } from './ExpenseItem/ExpenseItemModel';
+import { ExpenseItemModel } from '../../models/ExpenseItemModel';
 import './Expenses.css';
 
 function Expenses(props: any) {

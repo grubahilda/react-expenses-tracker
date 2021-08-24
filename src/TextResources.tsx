@@ -1,5 +1,5 @@
 export const TextResources = {
-  //ExpenseItem
+  // ExpenseItem
   updateButton: 'Update',
   titleLabel: 'Title',
   amountLabel: 'Amount',
@@ -10,4 +10,13 @@ export const TextResources = {
   noExpenses: 'There are no expenses for this period.',
   showFormButton: 'Add New Expense',
   all: 'All',
+
+  // SavingGoals
+  savingGoalsTitle: 'Saving Goals',
+  addSavingGoalButton: '+ Add',
+  addSavingGoalHeader: 'Add a new saving goal',
+  savingGoalName: 'Name',
+  savingGoalAmount: 'Amount needed',
+  savingGoalPriority: 'Priority',
+  defaultPriority: 'Choose priority',
 };
