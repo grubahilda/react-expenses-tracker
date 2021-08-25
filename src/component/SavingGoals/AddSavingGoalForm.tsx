@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import { TextResources } from '.';
 import { PriorityEnum } from '../../models/enums';
+import Input from '../UI/Input';
 
 const AddSavingGoalForm = (props: any) => {
   const [nameInput, setNameInput] = useState('');
@@ -19,14 +20,13 @@ const AddSavingGoalForm = (props: any) => {
   const [isPriorityValid, setIsPriorityValid] = useState(false);
   const [initialValidation, setInitialValidation] = useState(false);
 
-  const items = Object.values(PriorityEnum).map(key => {
+  const items = Object.values(PriorityEnum).map((key) => {
     return (
       <option key={key} value={PriorityEnum[key]}>
         {key}
       </option>
     );
   });
-
 
   const handleSubmit = (event: React.SyntheticEvent) => {
     setInitialValidation(true);
@@ -41,10 +41,10 @@ const AddSavingGoalForm = (props: any) => {
     priorityInput === TextResources.defaultPriority
       ? setIsPriorityValid(false)
       : setIsPriorityValid(true);
-          
+
     if (isNameValid && isAmountValid && isPriorityValid)
       props.addNewSavingGoal(userInput);
-        // TODO double click needed, workaround?
+    // TODO double click needed, workaround?
   };
 
   const removeDefaultOption = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -53,9 +53,9 @@ const AddSavingGoalForm = (props: any) => {
     setUserInput((prevState) => {
       return {
         ...prevState,
-        priority: event.target.value
-      }
-    });    
+        priority: event.target.value,
+      };
+    });
   };
 
   const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -63,9 +63,9 @@ const AddSavingGoalForm = (props: any) => {
     setUserInput((prevState) => {
       return {
         ...prevState,
-        name: event.target.value
-      }
-    }); 
+        name: event.target.value,
+      };
+    });
   };
 
   const handleAmountChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -73,33 +73,44 @@ const AddSavingGoalForm = (props: any) => {
     setUserInput((prevState) => {
       return {
         ...prevState,
-        amount: event.target.value
-      }
-    }); 
+        amount: event.target.value,
+      };
+    });
   };
 
   return (
     <>
       <form onSubmit={handleSubmit}>
+        <Input
+          labelText={TextResources.savingGoalName}
+          type='text'
+          initialValidation={initialValidation}
+          isInputValid={isNameValid}
+          handleInputChange={handleNameChange}
+        />
+        <Input
+          labelText={TextResources.savingGoalAmount}
+          type='number'
+          initialValidation={initialValidation}
+          isInputValid={isAmountValid}
+          handleInputChange={handleAmountChange}
+        />
         <div className='saving-goal__control'>
           <label>{TextResources.savingGoalName}</label>
-          <input onChange={handleNameChange} type='text'></input>
-          {(initialValidation && !isNameValid) && <span>This field is required</span>}
-        </div>
-        <div className='saving-goal__control'>
-          <label>{TextResources.savingGoalAmount}</label>
-          <input onChange={handleAmountChange} type='number'></input>
-          {(initialValidation && !isAmountValid) && <span>This field is required</span>}
-        </div>
-        <div className='saving-goal__control'>
-          <label>{TextResources.savingGoalName}</label>
-          <select onChange={removeDefaultOption}>
+          <select
+            style={{
+              borderColor: initialValidation && !isNameValid ? 'red' : 'black',
+            }}
+            onChange={removeDefaultOption}
+          >
             <option id='default-priority-option'>
               {TextResources.defaultPriority}
             </option>
             {items}
           </select>
-          {(initialValidation && !isPriorityValid) && <span>This field is required</span>}
+          {initialValidation && !isPriorityValid && (
+            <span>This field is required</span>
+          )}
         </div>
       </form>
       <Modal.Footer>
