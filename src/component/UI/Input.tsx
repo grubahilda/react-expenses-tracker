@@ -1,3 +1,4 @@
+import './Input.css'
 
 const Input = (props: any) => {
   // component inputs:
@@ -6,13 +7,10 @@ const Input = (props: any) => {
   // isInputValid
 
   return (
-    <div className='saving-goal__control'>
+    <div className='control'>
       <label>{props.labelText}</label>
       <input
-        style={{
-          borderColor:
-            props.initialValidation && !props.isInputValid ? 'red' : 'black',
-        }}
+        className={`${props.initialValidation && !props.isInputValid ? 'invalid' : null}`}
         onChange={props.handleInputChange}
         type={props.type}
       ></input>

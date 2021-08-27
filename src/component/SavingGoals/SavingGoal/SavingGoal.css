@@ -5,7 +5,14 @@
   color: white;
   padding: 1rem 2rem;
   border-radius: 12px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+}
+
+.goal-item:hover {
+  background: rgb(84, 0, 122);
+}
+
+.goal-item > p {
+  display: inline-block;
+  width: 33%;
+  margin: 0.5rem 0;
 }

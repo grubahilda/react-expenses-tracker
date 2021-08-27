@@ -37,37 +37,12 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   font-weight: bold;
   color: white;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
   padding: 1rem 2rem;
   border-radius: 12px;
 }
 
-.saving-goals-list {
-}
-
-.saving-goal__control {
-  margin-bottom: 1rem;
-}
-
-.saving-goal__control label {
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  display: block;
-}
-
-.saving-goal__control input {
-  font: inherit;
-  padding: 0.5rem;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  width: 20rem;
-  max-width: 100%;
-}
-
-.saving-goal__control span {
-  color: red;
-  display: block;
-  max-width: 100%;
+.saving-goals__header-bar > p {
+  display: inline-block;
+  width: 33%;
+  margin-top: 1rem;
 }

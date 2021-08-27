@@ -5,13 +5,8 @@ import { PriorityEnum } from '../../models/enums';
 import Input from '../UI/Input';
 
 const AddSavingGoalForm = (props: any) => {
-  const [nameInput, setNameInput] = useState('');
-  const [amountInput, setAmountInput] = useState('');
-  const [priorityInput, setPriorityInput] = useState(
-    TextResources.defaultPriority
-  );
   const [userInput, setUserInput] = useState({
-    title: '',
+    name: '',
     amount: '',
     priority: '',
   });
@@ -32,50 +27,60 @@ const AddSavingGoalForm = (props: any) => {
     setInitialValidation(true);
     event.preventDefault();
 
-    nameInput.trim().length === 0
+    userInput.name.trim().length === 0
       ? setIsNameValid(false)
       : setIsNameValid(true);
-    amountInput.trim().length === 0
+    userInput.amount.trim().length === 0
       ? setIsAmountValid(false)
       : setIsAmountValid(true);
-    priorityInput === TextResources.defaultPriority
+    userInput.priority.length === 0
       ? setIsPriorityValid(false)
       : setIsPriorityValid(true);
 
     if (isNameValid && isAmountValid && isPriorityValid)
       props.addNewSavingGoal(userInput);
-    // TODO double click needed, workaround?
   };
 
-  const removeDefaultOption = (event: ChangeEvent<HTMLSelectElement>) => {
+  const removeDefaultOption = () => {
     document.getElementById('default-priority-option')?.remove();
-    setPriorityInput(event.target.value);
-    setUserInput((prevState) => {
-      return {
-        ...prevState,
-        priority: event.target.value,
-      };
-    });
   };
 
   const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setNameInput(event.target.value);
     setUserInput((prevState) => {
       return {
         ...prevState,
         name: event.target.value,
       };
     });
+
+    event.target.value.trim().length === 0
+      ? setIsNameValid(false)
+      : setIsNameValid(true);
   };
 
   const handleAmountChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setAmountInput(event.target.value);
     setUserInput((prevState) => {
       return {
         ...prevState,
         amount: event.target.value,
       };
     });
+    event.target.value.trim().length > 0
+      ? setIsAmountValid(true)
+      : setIsAmountValid(false);
+  };
+
+  const handlePriorityChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    removeDefaultOption();
+    setUserInput((prevState) => {
+      return {
+        ...prevState,
+        priority: event.target.value,
+      };
+    });
+    event.target.value.length === 0
+      ? setIsPriorityValid(false)
+      : setIsPriorityValid(true);
   };
 
   return (
@@ -95,13 +100,11 @@ const AddSavingGoalForm = (props: any) => {
           isInputValid={isAmountValid}
           handleInputChange={handleAmountChange}
         />
-        <div className='saving-goal__control'>
+        <div className='control'>
           <label>{TextResources.savingGoalName}</label>
           <select
-            style={{
-              borderColor: initialValidation && !isNameValid ? 'red' : 'black',
-            }}
-            onChange={removeDefaultOption}
+            className={`${initialValidation && !isPriorityValid ? 'invalid' : null}`}
+            onChange={handlePriorityChange}
           >
             <option id='default-priority-option'>
               {TextResources.defaultPriority}
@@ -112,15 +115,15 @@ const AddSavingGoalForm = (props: any) => {
             <span>This field is required</span>
           )}
         </div>
+        <Modal.Footer>
+          <Button variant='secondary' onClick={props.onHandleClose}>
+            Close
+          </Button>
+          <Button variant='primary' type='submit'>
+            Save Changes
+          </Button>
+        </Modal.Footer>
       </form>
-      <Modal.Footer>
-        <Button variant='secondary' onClick={props.onHandleClose}>
-          Close
-        </Button>
-        <Button variant='primary' onClick={handleSubmit}>
-          Save Changes
-        </Button>
-      </Modal.Footer>
     </>
   );
 };
