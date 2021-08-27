@@ -37,9 +37,12 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   font-weight: bold;
   color: white;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
   padding: 1rem 2rem;
   border-radius: 12px;
+}
+
+.saving-goals__header-bar > p {
+  display: inline-block;
+  width: 33%;
+  margin-top: 1rem;
 }
