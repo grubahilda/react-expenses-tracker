@@ -43,31 +43,3 @@
   padding: 1rem 2rem;
   border-radius: 12px;
 }
-
-.saving-goals-list {
-}
-
-.saving-goal__control {
-  margin-bottom: 1rem;
-}
-
-.saving-goal__control label {
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  display: block;
-}
-
-.saving-goal__control input {
-  font: inherit;
-  padding: 0.5rem;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  width: 20rem;
-  max-width: 100%;
-}
-
-.saving-goal__control span {
-  color: red;
-  display: block;
-  max-width: 100%;
-}

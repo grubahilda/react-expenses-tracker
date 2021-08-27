@@ -100,12 +100,10 @@ const AddSavingGoalForm = (props: any) => {
           isInputValid={isAmountValid}
           handleInputChange={handleAmountChange}
         />
-        <div className='saving-goal__control'>
+        <div className='control'>
           <label>{TextResources.savingGoalName}</label>
           <select
-            style={{
-              borderColor: initialValidation && !isNameValid ? 'red' : 'black',
-            }}
+            className={`${initialValidation && !isPriorityValid ? 'invalid' : null}`}
             onChange={handlePriorityChange}
           >
             <option id='default-priority-option'>
